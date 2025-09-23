@@ -123,10 +123,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Charles.cpp" />
+    <ClCompile Include="Conan.cpp" />
+    <ClCompile Include="Dante.cpp" />
+    <ClCompile Include="Goethe.cpp" />
+    <ClCompile Include="Kenji.cpp" />
+    <ClCompile Include="KimSowol.cpp" />
+    <ClCompile Include="Poet.cpp" />
     <ClCompile Include="PoetWar.cpp" />
+    <ClCompile Include="TwilightPoet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Charles.h" />
+    <ClInclude Include="Conan.h" />
+    <ClInclude Include="Dante.h" />
+    <ClInclude Include="Goethe.h" />
+    <ClInclude Include="Kenji.h" />
+    <ClInclude Include="KimSowol.h" />
+    <ClInclude Include="Poet.h" />
     <ClInclude Include="PoetWar.h" />
+    <ClInclude Include="TwilightPoet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
