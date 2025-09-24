@@ -19,6 +19,15 @@
     <Filter Include="PoetWar">
       <UniqueIdentifier>{65748bbb-1c63-49fc-9898-d60522c11bc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="필드 맵">
+      <UniqueIdentifier>{4070eaf5-d9dc-4fe6-a652-46bc22caa50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="플레이어">
+      <UniqueIdentifier>{d3973db1-81d7-4287-b5b0-d40cfc49a183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="게임 구조">
+      <UniqueIdentifier>{864bc54a-fce0-431c-8189-98448760de58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PoetWar.cpp">
@@ -48,6 +57,15 @@
     <ClCompile Include="Charles.cpp">
       <Filter>시인</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>필드 맵</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRule.cpp">
+      <Filter>게임 구조</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>플레이어</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoetWar.h">
@@ -76,6 +94,15 @@
     </ClInclude>
     <ClInclude Include="Charles.h">
       <Filter>시인</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>필드 맵</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRule.h">
+      <Filter>게임 구조</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>플레이어</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

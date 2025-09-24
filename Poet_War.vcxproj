@@ -126,9 +126,12 @@
     <ClCompile Include="Charles.cpp" />
     <ClCompile Include="Conan.cpp" />
     <ClCompile Include="Dante.cpp" />
+    <ClCompile Include="GameRule.cpp" />
     <ClCompile Include="Goethe.cpp" />
     <ClCompile Include="Kenji.cpp" />
     <ClCompile Include="KimSowol.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Poet.cpp" />
     <ClCompile Include="PoetWar.cpp" />
     <ClCompile Include="TwilightPoet.cpp" />
@@ -137,9 +140,12 @@
     <ClInclude Include="Charles.h" />
     <ClInclude Include="Conan.h" />
     <ClInclude Include="Dante.h" />
+    <ClInclude Include="GameRule.h" />
     <ClInclude Include="Goethe.h" />
     <ClInclude Include="Kenji.h" />
     <ClInclude Include="KimSowol.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Poet.h" />
     <ClInclude Include="PoetWar.h" />
     <ClInclude Include="TwilightPoet.h" />
