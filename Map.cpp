@@ -5,8 +5,7 @@
 
 void Map::TutorialMap()
 {
-	//const char* FilePath = ".\\Data\\.txt";//
-
+	//const char* FilePath = ".\\Data\\.txt";
 	//std::ifstream InputFile(FilePath);
 	//if (!InputFile.is_open())	// 파일이 열렸는지 확인하는 함수
 	//{
