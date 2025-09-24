@@ -66,6 +66,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>플레이어</Filter>
     </ClCompile>
+    <ClCompile Include="ICanBattle.cpp">
+      <Filter>게임 구조</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoetWar.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>플레이어</Filter>
+    </ClInclude>
+    <ClInclude Include="ICanBattle.h">
+      <Filter>게임 구조</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
