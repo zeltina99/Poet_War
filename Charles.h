@@ -1,7 +1,6 @@
 #pragma once
 #include "Poet.h"
-#include "ICanBattle.h"
-class Charles : public Poet, public ICanBattle
+class Charles : public Poet
 {
 public:
 	/// <summary>

@@ -4,6 +4,8 @@
 #include <vector>
 #include "Poet.h"
 
+class Chapters; // 순환 inlude 방지
+
 // 각각의 시인들을 이기면 얻을 시집(아이템)
 enum class Poem
 {
@@ -51,11 +53,11 @@ public:
 	inline std::wstring GetName() const { return Name; }
 	inline int GetPlayerAttackPower() const { return PlayerAttackPower; }
 
-	void AddPoem(Poem poem) { Poems.push_back(poem); }	// 적을 이기면 얻을 아이템
+	void AddPoem(Poem poem);	// 적을 이기면 얻을 아이템
 
 	void ShowInventory() const;// 보여줄 인벤토리
 
-	const std::vector<Poem>& GetPoems() const { return Poems; }
+	const std::vector<Poem>& GetPoems() const { return Inventory; }
 
 	
 

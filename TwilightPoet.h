@@ -1,7 +1,6 @@
 #pragma once
 #include "Poet.h"
-#include "ICanBattle.h"
-class TwilightPoet : public Poet, public ICanBattle
+class TwilightPoet : public Poet
 {
 public:
 	virtual void Attack(ICanBattle* InTarget) override;

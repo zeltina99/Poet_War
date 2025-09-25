@@ -68,7 +68,7 @@ void Chapters::KenjiChapter(Player* player)
     Kenji KenjiPoet("미야자와 켄지", 200, 25);
     printf("윤동주: 백개의 바람이 분다는 마을이야.\n\n");
 
-    if (!KenjiPoet.IsAliveKenji());
+    if (!KenjiPoet.IsAliveKenji())
     {
         DefeatedPoets.push_back(PoetID::KenjiID);
     }
