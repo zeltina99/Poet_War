@@ -5,11 +5,7 @@
 
 void Battles::CharlesBattle(Player* InPlayer, Charles* InPoet)
 {
-
-    
-
     int InputNumber = 0;
-    int InputNumber2 = 0;
 
     while (InPlayer->IsAlivePlayer() && InPoet->IsAliveCharles())
     {

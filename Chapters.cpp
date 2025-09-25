@@ -18,49 +18,84 @@ void Chapters::CharlesChapter(Player* player)
 {
     Charles CharlesPoet("샤를 보들레르", 100, 8);
     poet.CharlesBattle(player, &CharlesPoet);
+    if (!CharlesPoet.IsAliveCharles())
+    {
+        DefeatedPoets.push_back(PoetID::CharlesID);  // 샤를 죽음 기록
+    }
     
 }
 
 void Chapters::DanteChapter(Player* player)
 {
     map.InferniaMap();
+    Dante DantePoet("단테", 130, 10);
+    printf("윤동주: 저 문을 넘보려는 자들은 하나같이 사라졌다는 얘기가 있어...\n\n");
 
-    DefeatedPoets.push_back(PoetID::DanteID);
+
+    if (!DantePoet.IsAliveDante())
+    {
+        DefeatedPoets.push_back(PoetID::DanteID);
+    }
 }
 
 void Chapters::ConanChapter(Player* player)
 {
     map.ShercroftMap();
+    Conan ConanPoet("아서 코난도일", 150, 8);
+    printf("윤동주: 그림자 하나까지도 단서가 되는 마을이야.\n\n");
 
-    DefeatedPoets.push_back(PoetID::ConanID);
+    if (!ConanPoet.IsAliveConan())
+    {
+        DefeatedPoets.push_back(PoetID::ConanID);
+    }
 }
 
 void Chapters::GoetheChapter(Player* player)
 {
     map.FaustburgMap();
+    Goethe GoethePoet("괴테", 80, 20);
+    printf("윤동주: 파우스트의 성채... 욕망에 팔아넘기지 않은 영혼이라면 조심하는 게 좋아.\n\n");
 
-    DefeatedPoets.push_back(PoetID::GoetheID);
+    if(!GoethePoet.IsAliveGoethe())
+    {
+        DefeatedPoets.push_back(PoetID::GoetheID);
+    }
 }
 
 void Chapters::KenjiChapter(Player* player)
 {
     map.KazehamuraMap();
+    Kenji KenjiPoet("미야자와 켄지", 200, 25);
+    printf("윤동주: 백개의 바람이 분다는 마을이야.\n\n");
 
-    DefeatedPoets.push_back(PoetID::KenjiID);
+    if (!KenjiPoet.IsAliveKenji());
+    {
+        DefeatedPoets.push_back(PoetID::KenjiID);
+    }
 }
 
 void Chapters::KimSowolChapter(Player* player)
 {
     map.AzaleanMap();
+    KimSowol KimSowolPoet("김소월", 250, 20);
+    printf("윤동주: 바람에 흔들리는 꽃잎을 보게... 쓸쓸하지 않아?\n\n");
 
-    DefeatedPoets.push_back(PoetID::KimSowolID);
+    if(!KimSowolPoet.IsAliveKimSowol())
+    {
+        DefeatedPoets.push_back(PoetID::KimSowolID);
+    }
 }
 
 void Chapters::BoseChapter(Player* player)
 {
     map.AvonSanctumMap();
+    TwilightPoet Shakespeare("윌리엄 셰익스피어", 500, 50);
+    printf("윤동주: .....지금까지 모은 시집을 줘\n\n");
 
-    DefeatedPoets.push_back(PoetID::ShakespeareID);
+    if(!Shakespeare.IsAlive())
+    {
+        DefeatedPoets.push_back(PoetID::ShakespeareID);
+    }
 }
 
 void Chapters::LevelChapters(Player* player)

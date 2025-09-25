@@ -34,25 +34,28 @@ public:
 	
 	// 마을/탐험 모드
 	void TalkToYoon();          //	① 윤동주와 대화
-	void MoveToLocation();      //	② 다른 장소로 이동
-	void InvestigateArea();     //	③ 주변 조사
+	void MoveToLocation(Chapters* Level);      //	② 다른 장소로 이동
+	void InvestigateArea(Chapters* Level);     //	③ 주변 조사
 	void OpenInventory();       //	④ 가방 열기
 
 	
 
 	// 전투 모드
-	void RecitePoemAttack();	//	① 기본 공격
-	void UnleashPoemSkill();    //	② 시집(스킬) 공격
+	void RecitePoemAttack(Poet* target);						//	① 기본 공격
+	void UnleashPoemSkill(Poem chosenPoem, Poet* target);		//	② 시집(스킬) 공격
 
 
 	inline const int GetPlayerHealth() const { return PlayerHealth; }
+	inline const int GetPlayerMaxHealth() const { return MaxHealth; }
 	inline const int GetInk() const { return Ink; }
 	inline std::wstring GetName() const { return Name; }
 	inline int GetPlayerAttackPower() const { return PlayerAttackPower; }
 
-	void AddPoem(Poem poem);	// 적을 이기면 얻을 아이템
+	void AddPoem(Poem poem) { Poems.push_back(poem); }	// 적을 이기면 얻을 아이템
 
 	void ShowInventory() const;// 보여줄 인벤토리
+
+	const std::vector<Poem>& GetPoems() const { return Poems; }
 
 	
 

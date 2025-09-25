@@ -1,7 +1,9 @@
 #include "Player.h"
+#include "Chapters.h"
 #include <cwchar>   // wprintf
 #include <cstdlib>
 #include <random>
+#include <iostream>
 
 void Player::PlayerHeal(int InPoetHealth)
 {
@@ -50,12 +52,13 @@ void Player::Attack(ICanBattle* InTarget)
     if (!Poems.empty())
     {
         std::wstring poem = Poems.back();
-        wprintf(L"\n%ls의 시구가 울려 퍼진다! (\"%ls\")\n", Name.c_str(), poem.c_str());
+        wprintf(L"\n%ls: \"%ls\"\n", Name.c_str(), poem.c_str());
     }
     else
     {
         wprintf(L"%ls의 공격! (공격력: %d)\n", Name.c_str(), AttackPower);
     }
+    printf("\n");
 
     InTarget->TakeDamage(AttackPower);
 }
@@ -69,7 +72,7 @@ void Player::TakeDamage(int InDamage)
         printf("당신의 시는 세상에 닿지 못 했습니다... (게임 패배)");
     }
 
-    wprintf(L"%ls는 %d의 피해를 입었다! (남은 체력: %d)\n\n", Name.c_str(), InDamage, PlayerHealth);
+    wprintf(L"%ls는 %d의 피해를 입었다! ([%ls]의 현재 체력: %d)\n\n", Name.c_str(), InDamage, Name.c_str(), PlayerHealth);
 }
 
 void Player::SetPoem(std::wstring InPoem)
@@ -104,27 +107,245 @@ void Player::DecideAttackPower()
 
 void Player::TalkToYoon()
 {
+    if (GetInk() >= 50)
+    {
+        // 잉크가 있다면
+        printf("윤동주: 몸을 좀 회복할래? 아니면 시를 첨삭 해줄까?\n");
+        int InputNumber1 = -1;
+        while (InputNumber1 != 1 && InputNumber1 != 2 && InputNumber1 != 3)
+        {
+            printf("① 잉크 50을 써서 체력을 회복한다\n②시를 첨삭한다\n③ 뒤로가기  : ");
+            std::cin >> InputNumber1;
+            if (InputNumber1 == 1)
+            {
+                PayInk(50);
+                PlayerHeal(50);
+            }
+            else if (InputNumber1 == 2)
+            {
+                if (GetInk() >= 150)
+                {
+                    printf("윤동주: 좋아! 시를 첨삭 해줄게.\n");
+                    int InputNumber2 = -1;
+                    // ① 잉크 150을 써서 시를 강화하기(기본 공격력 증가), ② 잉크 150을 써서 윤동주의 시를 읽기(최대 체력 증가)
+                    while (InputNumber2 != 1 && InputNumber2 != 2 && InputNumber2 != 3)   // 1,2,3에서 하나라도 입력이 안되면 계속 반복
+                    {
+                        printf("① 잉크 150을 써서 시를 강화하기\n② 잉크 150을 써서 윤동주의 시를 읽기\n③ 뒤로가기 : ");
+                        std::cin >> InputNumber2;
+                        if (InputNumber2 == 1)
+                        {
+                            PayInk(150);
+                            AttackPowerUP();
+                        }
+                        else if (InputNumber2 == 2)
+                        {
+                            PayInk(150);
+                            HealthPowerUP();
+                        }
+                        else if (InputNumber2 == 3)
+                        {
+                            //뒤로가기
+                        }
+                        else
+                        {
+                            printf("\n잘못된 입력이야! 다시 입력해줘\n");
+                        }
+                    }
+                }
+                else
+                {
+                    printf("윤동주: 내가 시를 첨삭 해주고 싶어도 잉크가 최소한 150은 있어야해.\n");
+                }
+            }
+            else if (InputNumber1 == 3)
+            {
+                //뒤로가기
+            }
+            else
+            {
+                printf("\n잘못된 입력이야! 다시 입력해줘\n");
+            }
+        }
+
+    }
+    else
+    {
+        // 잉크가 없다면
+        printf("윤동주: 시인은 잉크가 필요해...\n");
+    }
 }
 
-void Player::MoveToLocation()
+void Player::MoveToLocation(Chapters* Level)
 {
+    Level->LevelChapters(this);
 }
 
-void Player::InvestigateArea()
+void Player::InvestigateArea(Chapters* Level)
 {
+    LocationID loc = Level->GetCurrentLocation();    // enum class로 한 위치 값을 받음
+
+    switch (loc)
+    {
+    case LocationID::Scentveil:
+    {
+        if (Level->IsPoetAlive(PoetID::CharlesID))   // 샤를이 살아 있으면
+        {
+            printf("샤를 보들레르: 타락 속에서 꽃을 피워주마.\n");
+            // 샤를 전투 실행
+            Level->CharlesChapter(this);  // 전투 함수 연결
+        }
+        else
+        {
+            printf("여긴 이미 고요하다... (샤를을 쓰러트렸다)\n");
+        }
+    }
+    break;
+    case LocationID::Infernia:
+    {
+        if (Level->IsPoetAlive(PoetID::DanteID))     // 단테가 살아 있으면
+        {
+            printf("단테: 나는 영혼의 길을 시로써 밝혀줄 순례자다.\n");
+            // 단테 전투 실행
+            Level->DanteChapter(this);  // 전투 함수 연결
+        }
+        else
+        {
+            printf("이미 정적만 흐른다... (단테를 쓰러트렸다)\n");
+        }
+    }
+    break;
+
+    case LocationID::Shercroft:
+    {
+        if (Level->IsPoetAlive(PoetID::ConanID))     // 코난도일이 살아 있으면
+        {
+            printf("아서 코난도일: 불가능한 것을 모두 없애면, 남는 건 진실 뿐.\n");
+            Level->ConanChapter(this);
+        }
+        else
+        {
+            printf("여긴 이미 고요하다... (코난도일을 쓰러트렸다)\n");
+        }
+    }
+    break;
+
+    case LocationID::Faustburg:
+    {
+        if (Level->IsPoetAlive(PoetID::GoetheID))    // 괴테가 살아 있으면
+        {
+            printf("괴테: 욕망과 운명을 꿰뚫은 눈으로 상대하지.\n");
+            Level->GoetheChapter(this);
+        }
+        else
+        {
+            printf("이미 정적만 흐른다... (괴테를 쓰러트렸다)\n");
+        }
+    }
+    break;
+
+    case LocationID::Kazehamura:
+    {
+        if (Level->IsPoetAlive(PoetID::KenjiID))     // 켄지가 살아 있으면
+        {
+            printf("미야자와 켄지: 소박한 강인함으로 세상을 품는다.\n");
+            Level->KenjiChapter(this);
+        }
+        else
+        {
+            printf("여긴 이미 고요하다... (켄지를 쓰러트렸다)\n");
+        }
+    }
+    break;
+
+    case LocationID::Azalean:
+    {
+        if (Level->IsPoetAlive(PoetID::KimSowolID))      // 김소월이 살아 있으면
+        {
+            printf("김소월: 꽃잎으로 남은 이별의 혼, 너의 상대는 혼의 정수다.\n");
+            Level->KimSowolChapter(this);
+        }
+        else
+        {
+            printf("이미 정적만 흐른다... (김소월을 쓰러트렸다)\n");
+        }
+    }
+    break;
+
+    case LocationID::AvonSanctum:
+    {
+        printf("성스러운 제단 앞...\n");
+        Level->BoseChapter(this);
+    }
+    break;
+
+    case LocationID::None:
+    default:
+        printf("여기서는 아무도 발견되지 않았다...\n");
+        break;
+    }
 }
+
 
 void Player::OpenInventory()
 {
+    ShowInventory();
+    wprintf(L"\n 이름 :  [%ls]", GetName().c_str());
+    printf("\n 잉크 :  [%d]", GetInk());
+    printf("\n 체력 :  [%d/%d]", GetPlayerHealth(), GetPlayerMaxHealth());
+    printf("\n 공격력 : [%d]\n\n", GetPlayerAttackPower());
 }
 
-void Player::RecitePoemAttack()
+void Player::RecitePoemAttack(Poet* target)
 {
+    int BonusAttack = rand() % 6;
+    int AttackPower = PlayerAttackPower + BonusAttack;
+
+    std::wstring poem = Poems.back();
+    wprintf(L"\n%ls: \"%ls\"\n", Name.c_str(), poem.c_str());
+    target->TakeDamage(AttackPower);
 }
 
-void Player::UnleashPoemSkill()
+void Player::UnleashPoemSkill(Poem chosenPoem, Poet* target)
 {
+    switch (chosenPoem)
+    {
+    case Poem::CharlesPoem:
+        printf("『악의 꽃』을 펼쳤다! 공격력이 2배가 된다!\n");
+        target->TakeDamage(PlayerAttackPower * 2);
+        break;
+
+    case Poem::DantePoem:
+        printf("『신곡』을 펼쳤다! 단테의 구절이 적을 압도한다!\n");
+        target->TakeDamage(PlayerAttackPower + 15);
+        break;
+
+    case Poem::GoethePoem:
+        printf("『마왕』을 펼쳤다! 공포가 시를 타고 전해진다!\n");
+        target->TakeDamage(PlayerAttackPower + 20);
+        break;
+
+    case Poem::KimSowolPoem:
+        printf("『진달래꽃』을 펼쳤다! 체력이 회복된다!\n");
+        PlayerHeal(30);
+        break;
+
+    case Poem::ConanPoem:
+        printf("『활의 노래』를 펼쳤다! 정확도가 상승하여 추가 피해!\n");
+        target->TakeDamage(PlayerAttackPower + (rand() % 10));
+        break;
+
+    case Poem::KenjiPoem:
+        printf("『비에도 지지 않고』를 펼쳤다! 방어력이 강해졌다!\n");
+        PlayerHeal(20);
+        break;
+
+    default:
+        printf("알 수 없는 시집을 펼쳤다...\n");
+        break;
+    }
 }
+
+
 
 void Player::AddPoem(Poem poem)
 {

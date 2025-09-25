@@ -8,7 +8,7 @@ class GameManager
 public:
 	void StartGame();	// 윤동주 튜토리얼
 	void ExploreMenu();	// 마을/탐험 상태
-	void BattleMenu();	// 전투 상태
+	void BattleMenu(Player* InPlayer, Poet* InPoet);	// 전투 상태
 
 	void Intro();
 	void TutorialBattle(Player* player, TwilightPoet* twilight);	// 튜토리얼 전투

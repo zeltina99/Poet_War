@@ -1,8 +1,10 @@
 #pragma once
+#include "ICanBattle.h"
 #include <string>
 #include <random>
+#include <cstdio>
 
-class Poet
+class Poet : public ICanBattle
 {
 public:
 
@@ -15,6 +17,16 @@ public:
 	Poet(std::string InName, int InHealth, int InAttackPower) : Name(InName), Health(InHealth), AttackPower(InAttackPower) {}
 
 	virtual ~Poet() {};
+
+	virtual void TakeDamage(int InDamage)
+	{
+		SetHealth(Health - InDamage);
+		if (Health < 0) Health = 0;
+
+		printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+	}
+
+	virtual void Attack(class ICanBattle* InTarget) = 0;
 
 protected:
 

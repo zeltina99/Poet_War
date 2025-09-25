@@ -3,6 +3,7 @@
 #include "ICanBattle.h"
 class Conan : public Poet, public ICanBattle
 {
+public:
 	/// <summary>
 	/// Target에게 공격하는 함수
 	/// </summary>
@@ -15,12 +16,10 @@ class Conan : public Poet, public ICanBattle
 	/// <param name="InDamage">적용할 피해량</param>
 	virtual void TakeDamage(int InDamage) override;
 
-	void ConanPoemSkill();	// 샤를 보들레르의 전용 스킬
+	void ConanPoemSkill();	// 코난의 전용 스킬
 
 	inline bool IsAliveConan() const { return Health > 0; }
 
-
-	void ConanDefeat(); // 김소월이 패배하면 출력할 함수
 
 public:
 	Conan() = default;

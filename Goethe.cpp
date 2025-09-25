@@ -4,20 +4,24 @@ void Goethe::Attack(ICanBattle* InTarget)
 {
     int AttackEventNumber = rand() % 10;
     //PoemAttackPower
+    int PoemAttackPower = AttackPower;
 
     if (AttackEventNumber < 7)    // 기본 공격 (맞을 확률 70%)
     {
-        printf("마왕의 노래를 들어라!\n");
+        printf("%s: 마왕의 노래를 들어라!\n", Name.c_str());
         //PoemAttackPower만큼 공격함
+        InTarget->TakeDamage(AttackPower);
     }
     else if ((7 <= AttackEventNumber) && (AttackEventNumber < 9))   // 치명타 공격 (맞을 확률 20%)
     {
-        printf("사랑스러운 아이야, 오라, 나와 함께 가자!\n");
+        printf("%s: 사랑스러운 아이야, 오라, 나와 함께 가자!\n", Name.c_str());
         //PoemAttackPower의 약 2배 만큼 공격함 (고유 스킬을 쓰고 치명타가 터지면 4배)
+        PoemAttackPower = AttackPower * 2;
+        InTarget->TakeDamage(PoemAttackPower);
     }
     else        // 빗나갈 확률 (10%)  
     {
-        printf("아이야, 겁내지 말거라...\n");
+        printf("%s: 아이야, 겁내지 말거라...\n", Name.c_str());
         //PoemAttackPower가 안 들어감
     }
 }
@@ -26,21 +30,29 @@ void Goethe::TakeDamage(int InDamage)
 {
     int TakeEventNumber = (rand() % 3) + 1;
     //PlayerAttackPower
+    Health -= InDamage;
+    if (Health < 0)
+    {
+        Health = 0;
+    }
     switch (TakeEventNumber)    // 공격 맞았을 시 나올 대사 3개 중의 하나
     {
     case 1:
     {
-        printf("...이 고통마저 노래하리라.\n");
+        printf("%s: ...이 고통마저 노래하리라.\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
-        printf("아직 나의 노래는 시작하지 않았다!\n");
+        printf("%s: 아직 나의 노래는 시작하지 않았다!\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
-        printf("이제 백일야에서 끝을 보자...\n");
+        printf("%s: 이제 백일야에서 끝을 보자...\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:
@@ -64,6 +76,3 @@ void Goethe::GoethePoemSkill()
     }
 }
 
-void Goethe::GoetheDefeat()
-{
-}

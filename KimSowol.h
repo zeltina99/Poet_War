@@ -3,6 +3,7 @@
 #include "ICanBattle.h"
 class KimSowol : public Poet, public ICanBattle
 {
+public:
 	/// <summary>
 	/// Target에게 공격하는 함수
 	/// </summary>

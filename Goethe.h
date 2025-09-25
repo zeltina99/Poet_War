@@ -3,6 +3,7 @@
 #include "ICanBattle.h"
 class Goethe : public Poet, public ICanBattle
 {
+public:
 	/// <summary>
 	/// Target에게 공격하는 함수
 	/// </summary>
@@ -19,8 +20,6 @@ class Goethe : public Poet, public ICanBattle
 
 	inline bool IsAliveGoethe() const { return Health > 0; }
 
-
-	void GoetheDefeat(); // 괴테가 패배하면 출력할 함수
 
 public:
 	Goethe() = default;

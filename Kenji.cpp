@@ -4,20 +4,24 @@ void Kenji::Attack(ICanBattle* InTarget)
 {
     int AttackEventNumber = rand() % 10;
     //PoemAttackPower
+    int PoemAttackPower = AttackPower;
 
     if (AttackEventNumber < 7)    // 기본 공격 (맞을 확률 70%)
     {
-        printf("은하의 역은 이제 은빛의 작은 별 무리입니다.\n");
+        printf("%s: 은하의 역은 이제 은빛의 작은 별 무리입니다.\n", Name.c_str());
         //PoemAttackPower만큼 공격함
+        InTarget->TakeDamage(AttackPower);
     }
     else if ((7 <= AttackEventNumber) && (AttackEventNumber < 9))   // 치명타 공격 (맞을 확률 20%)
     {
-        printf("비와 바람처럼 몰아친다!\n");
+        printf("%s: 비와 바람처럼 몰아친다!\n", Name.c_str());
         //PoemAttackPower의 약 2배 만큼 공격함 (고유 스킬을 쓰고 치명타가 터지면 4배)
+        PoemAttackPower = AttackPower * 2;
+        InTarget->TakeDamage(PoemAttackPower);
     }
     else        // 빗나갈 확률 (10%)  
     {
-        printf("...구름이 가려졌구나.\n");
+        printf("%s: ...구름이 가려졌구나.\n", Name.c_str());
         //PoemAttackPower가 안 들어감
     }
 }
@@ -26,21 +30,29 @@ void Kenji::TakeDamage(int InDamage)
 {
     int TakeEventNumber = (rand() % 3) + 1;
     //PlayerAttackPower
+    Health -= InDamage;
+    if (Health < 0)
+    {
+        Health = 0;
+    }
     switch (TakeEventNumber)    // 공격 맞았을 시 나올 대사 3개 중의 하나
     {
     case 1:
     {
-        printf("너의 시에는 지지 않는다...\n");
+        printf("%s: 너의 시에는 지지 않는다...\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
-        printf("흙과 들풀이 날 지탱한다.\n");
+        printf("%s: 흙과 들풀이 날 지탱한다.\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
-        printf("가뭄이 들면 눈물을 흘리는 법.\n");
+        printf("%s: 가뭄이 들면 눈물을 흘리는 법.\n", Name.c_str());
+        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:

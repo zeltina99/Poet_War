@@ -168,195 +168,23 @@ void GameManager::ExploreMenu()
         {  
         case 1:
         {
-            if (player.GetInk() >= 50)
-            {
-                // 잉크가 있다면
-                printf("윤동주: 몸을 좀 회복할래? 아니면 시를 첨삭 해줄까?\n");
-                int InputNumber1 = -1;
-                while(InputNumber1 != 1 && InputNumber1 != 2 && InputNumber1 != 3)
-                {
-                    printf("① 잉크 50을 써서 체력을 회복한다\n②시를 첨삭한다\n③ 뒤로가기  : ");
-                    std::cin >> InputNumber1;
-                    if (InputNumber1 == 1)
-                    {
-                        player.PlayerHeal(50);
-                    }
-                    else if(InputNumber1 == 2)
-                    {
-                        if (player.GetInk() >= 150)
-                        {
-                            printf("윤동주: 좋아! 시를 첨삭 해줄게.\n");
-                            int InputNumber2 = -1;
-                            // ① 잉크 150을 써서 시를 강화하기(기본 공격력 증가), ② 잉크 150을 써서 윤동주의 시를 읽기(최대 체력 증가)
-                            while (InputNumber2 != 1 && InputNumber2 != 2 && InputNumber2 != 3)   // 1,2,3에서 하나라도 입력이 안되면 계속 반복
-                            {
-                                printf("① 잉크 150을 써서 시를 강화하기\n② 잉크 150을 써서 윤동주의 시를 읽기\n③ 뒤로가기 : ");
-                                std::cin >> InputNumber2;
-                                if (InputNumber2 == 1)
-                                {
-                                    player.PayInk(150);
-                                    player.AttackPowerUP();
-                                }
-                                else if (InputNumber2 == 2)
-                                {
-                                    player.PayInk(150);
-                                    player.HealthPowerUP();
-                                }
-                                else if (InputNumber2 == 3)
-                                {
-                                    //뒤로가기
-                                }
-                                else
-                                {
-                                    printf("\n잘못된 입력이야! 다시 입력해줘\n");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            printf("윤동주: 내가 시를 첨삭 해주고 싶어도 잉크가 최소한 150은 있어야해.\n");
-                        }
-                    }
-                    else if (InputNumber1 == 3)
-                    {
-                        //뒤로가기
-                    }
-                    else
-                    {
-                        printf("\n잘못된 입력이야! 다시 입력해줘\n");
-                    }
-                }
-                
-            }
-            else
-            {
-                // 잉크가 없다면
-                printf("윤동주: 시인은 잉크가 필요해...\n");
-            }
+            player.TalkToYoon();
         }
         break;
         case 2:
         {
-            Level.LevelChapters(&player);
+            player.MoveToLocation(&Level);
         }
         break;
         case 3:
         {
-            LocationID loc = Level.GetCurrentLocation();    // enum class로 한 위치 값을 받음
-
-            switch (loc)
-            {
-            case LocationID::Scentveil:
-            {
-                if (Level.IsPoetAlive(PoetID::CharlesID))   // 샤를이 살아 있으면
-                {
-                    printf("샤를 보들레르: 타락 속에서 꽃을 피워주마.\n");
-                    // 샤를 전투 실행
-                    Level.CharlesChapter(&player);  // 전투 함수 연결
-                }
-                else
-                {
-                    printf("여긴 이미 고요하다... (샤를을 쓰러트렸다)\n");
-                }
-            }
-                break;
-            case LocationID::Infernia:
-            {
-                if (Level.IsPoetAlive(PoetID::DanteID))     // 단테가 살아 있으면
-                {
-                    printf("단테: 나는 영혼의 길을 시로써 밝혀줄 순례자다.\n");
-                    // 단테 전투 실행
-                    Level.DanteChapter(&player);  // 전투 함수 연결
-                }
-                else
-                {
-                    printf("이미 정적만 흐른다... (단테를 쓰러트렸다)\n");
-                }
-            }
-                break;
-
-            case LocationID::Shercroft:
-            {
-                if (Level.IsPoetAlive(PoetID::ConanID))     // 코난도일이 살아 있으면
-                {
-                    printf("아서 코난도일: 불가능한 것을 모두 없애면, 남는 건 진실 뿐.\n");
-                    Level.ConanChapter(&player);
-                }
-                else
-                {
-                    printf("여긴 이미 고요하다... (코난도일을 쓰러트렸다)\n");
-                }
-            }
-                break;
-
-            case LocationID::Faustburg:
-            {
-                if (Level.IsPoetAlive(PoetID::GoetheID))    // 괴테가 살아 있으면
-                {
-                    printf("괴테: 욕망과 운명을 꿰뚫은 눈으로 상대하지.\n");
-                    Level.GoetheChapter(&player);
-                }
-                else
-                {
-                    printf("이미 정적만 흐른다... (괴테를 쓰러트렸다)\n");
-                }
-            }
-                break;
-
-            case LocationID::Kazehamura:
-            {
-                if (Level.IsPoetAlive(PoetID::KenjiID))     // 켄지가 살아 있으면
-                {
-                    printf("미야자와 켄지: 소박한 강인함으로 세상을 품는다.\n");
-                    Level.KenjiChapter(&player);
-                }
-                else
-                {
-                    printf("여긴 이미 고요하다... (켄지를 쓰러트렸다)\n");
-                }
-            }
-                break;
-
-            case LocationID::Azalean:
-            {
-                if (Level.IsPoetAlive(PoetID::KimSowolID))      // 김소월이 살아 있으면
-                {
-                    printf("김소월: 꽃잎으로 남은 이별의 혼, 너의 상대는 혼의 정수다.\n");
-                    Level.KimSowolChapter(&player);
-                }
-                else
-                {
-                    printf("이미 정적만 흐른다... (김소월을 쓰러트렸다)\n");
-                }
-            }
-                break;
-
-            case LocationID::AvonSanctum:
-            {
-                printf("성스러운 제단 앞...\n");
-                Level.BoseChapter(&player);
-            }
-                break;
-
-            case LocationID::None:
-            default:
-                printf("여기서는 아무도 발견되지 않았다...\n");
-                break;
-            }
+            player.InvestigateArea(&Level);
         }
         break;
         case 4:
         {
             // enum class에 넣은 시집들을 보여줌
-            player.ShowInventory();
-            printf("\n 이름 : ");
-            player.GetName();
-            printf("\n 보유 잉크량 : ");
-            player.GetInk();
-            printf("\n 공격력 : ");
-            player.GetPlayerAttackPower();
-            printf("\n 체력 : ");
-            player.GetPlayerHealth();
+            player.OpenInventory();
         }
         break;
         default:
@@ -369,13 +197,120 @@ void GameManager::ExploreMenu()
     }// if (보스가 죽거나 내가 죽거나) -> return
 }
 
-void GameManager::BattleMenu()
+void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
 {
+    int InputNumber = 0;
 
-    /*
-    ① player.RecitePoemAttack();    기본공격 (이 함수 안에 Attack 함수 처리함)
-    ② player.UnleashPoemSkill();    스킬공격 (시인을 이기고 얻은 시집들을 스킬로 쓸 수 있음 (약간 메가멘 느낌?)
-    */
+    while (InPlayer->IsAlivePlayer() && InPoet->GetPoetHealth() > 0)
+    {
+        printf("\n--- 전투 메뉴 ---\n");
+        printf("① 시를 읽는다 (기본 공격)\n");
+        printf("② 시집을 펼친다 (스킬)\n");
+        printf("> 선택: ");
+        std::cin >> InputNumber;
 
+        if (InputNumber == 1)
+        {
+            // 플레이어 턴 (기본 공격)
+            InPlayer->RecitePoemAttack(InPoet);
 
+            if (InPoet->GetPoetHealth() <= 0)
+            {
+                break;
+            }
+
+            // 적(시인) 턴
+            InPoet->Attack(InPlayer);
+
+            if (!InPlayer->IsAlivePlayer())
+            {
+                break;
+            }
+        }
+        else if (InputNumber == 2)
+        {
+            // 보유한 시집 스킬 확인
+            const auto& poems = InPlayer->GetPoems();
+
+            if (poems.empty())
+            {
+                printf("아직 획득한 시집이 없다!\n");
+                continue;    // 턴 소비 안 하고 다시 선택
+            }
+
+            printf("\n--- 사용 가능한 시집 ---\n");
+
+            for (size_t i = 0; i < poems.size(); ++i)
+            {
+                switch (poems[i])
+                {
+                case Poem::CharlesPoem:
+                    printf("%d. 악의 꽃 (공격력 2배)\n", (int)i + 1);
+                    break;
+                case Poem::DantePoem:
+                    printf("%d. 신곡 (다음 공격 무시)\n", (int)i + 1);
+                    break;
+                case Poem::GoethePoem:
+                    printf("%d. 마왕 (추가 피해)\n", (int)i + 1);
+                    break;
+                case Poem::KimSowolPoem:
+                    printf("%d. 진달래꽃 (체력 회복)\n", (int)i + 1);
+                    break;
+                case Poem::ConanPoem:
+                    printf("%d. 활의 노래 (정확도 상승)\n", (int)i + 1);
+                    break;
+                case Poem::KenjiPoem:
+                    printf("%d. 비에도 지지 않고 (방어력 상승)\n", (int)i + 1);
+                    break;
+                }
+            }
+
+            printf("0. 취소\n");
+            int poemChoice = 0;
+            printf("> 선택: ");
+            std::cin >> poemChoice;
+
+            if (poemChoice == 0)
+            {
+                continue;
+            }
+
+            if (poemChoice < 1 || poemChoice >(int)poems.size())
+            {
+                printf("잘못된 입력이다.\n");
+                continue;
+            }
+
+            Poem chosenPoem = poems[poemChoice - 1];
+
+            // 시집 스킬 발동 (아이템 소모 X)
+            InPlayer->UnleashPoemSkill(chosenPoem, InPoet);
+
+            if (InPoet->GetPoetHealth() <= 0)
+            {
+                break;
+            }
+
+            // 적 턴
+            InPoet->Attack(InPlayer);
+
+            if (!InPlayer->IsAlivePlayer())
+            {
+                break;
+            }
+        }
+        else
+        {
+            printf("잘못된 입력이야! 다시 입력해줘\n");
+        }
+    }
+
+    if (InPlayer->IsAlivePlayer())
+    {
+        printf("\n승리했다!\n");
+    }
+    else
+    {
+        printf("\n패배했다...\n");
+    }
 }
