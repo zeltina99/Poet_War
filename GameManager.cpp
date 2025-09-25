@@ -349,6 +349,14 @@ void GameManager::ExploreMenu()
         {
             // enum class에 넣은 시집들을 보여줌
             player.ShowInventory();
+            printf("\n 이름 : ");
+            player.GetName();
+            printf("\n 보유 잉크량 : ");
+            player.GetInk();
+            printf("\n 공격력 : ");
+            player.GetPlayerAttackPower();
+            printf("\n 체력 : ");
+            player.GetPlayerHealth();
         }
         break;
         default:
