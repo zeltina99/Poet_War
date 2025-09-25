@@ -1,6 +1,7 @@
 #include "Battles.h"
 #include <iostream>
 #include "Map.h"
+#include "GameManager.h"
 
 
 void Battles::CharlesBattle(Player* InPlayer, Charles* InPoet)
@@ -44,6 +45,16 @@ void Battles::CharlesBattle(Player* InPlayer, Charles* InPoet)
 
 void Battles::ConanBattle(Player* InPlayer, Conan* InPoet)
 {
+    GameManager gm;
+    gm.BattleMenu(InPlayer, InPoet);
+
+    if (InPoet->GetPoetHealth() <= 0)
+    {
+        InPlayer->TakeInk(300);   // 단테 전투 보상
+        InPlayer->AddPoem(Poem::DantePoem);
+        printf("단테를 쓰러트리고 시집 [신곡]을 얻었다!\n\n");
+        printf("윤동주: 이제 다음 마을로 가자.\n");
+    }
 }
 
 void Battles::DanteBattle(Player* InPlayer, Dante* InPoet)

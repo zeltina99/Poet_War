@@ -31,7 +31,7 @@ void Chapters::DanteChapter(Player* player)
     Dante DantePoet("단테", 130, 10);
     printf("윤동주: 저 문을 넘보려는 자들은 하나같이 사라졌다는 얘기가 있어...\n\n");
 
-
+    poet.DanteBattle(player, &DantePoet);
     if (!DantePoet.IsAliveDante())
     {
         DefeatedPoets.push_back(PoetID::DanteID);
