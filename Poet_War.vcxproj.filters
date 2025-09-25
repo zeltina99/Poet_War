@@ -60,13 +60,22 @@
     <ClCompile Include="Map.cpp">
       <Filter>필드 맵</Filter>
     </ClCompile>
-    <ClCompile Include="GameRule.cpp">
+    <ClCompile Include="GameManager.cpp">
       <Filter>게임 구조</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>플레이어</Filter>
     </ClCompile>
     <ClCompile Include="ICanBattle.cpp">
+      <Filter>게임 구조</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>게임 구조</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapters.cpp">
+      <Filter>게임 구조</Filter>
+    </ClCompile>
+    <ClCompile Include="Battles.cpp">
       <Filter>게임 구조</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,13 +110,22 @@
     <ClInclude Include="Map.h">
       <Filter>필드 맵</Filter>
     </ClInclude>
-    <ClInclude Include="GameRule.h">
+    <ClInclude Include="GameManager.h">
       <Filter>게임 구조</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>플레이어</Filter>
     </ClInclude>
     <ClInclude Include="ICanBattle.h">
+      <Filter>게임 구조</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>게임 구조</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapters.h">
+      <Filter>게임 구조</Filter>
+    </ClInclude>
+    <ClInclude Include="Battles.h">
       <Filter>게임 구조</Filter>
     </ClInclude>
   </ItemGroup>

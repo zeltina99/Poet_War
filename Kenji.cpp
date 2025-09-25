@@ -58,10 +58,6 @@ void Kenji::KenjiPoemSkill()
 
 }
 
-inline bool Kenji::IsAliveKenji()
-{
-    return false;
-}
 
 void Kenji::KenjiDefeat()
 {

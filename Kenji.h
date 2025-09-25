@@ -17,18 +17,14 @@ class Kenji : public Poet, public ICanBattle
 
 	void KenjiPoemSkill();	// 샤를 보들레르의 전용 스킬
 
-	/// <summary>
-	/// 이 시인의 생존 여부를 알려주는 함수
-	/// </summary>
-	/// <returns>true면 살아있다. false면 죽었다.</returns>
-	inline bool IsAliveKenji();
+	inline bool IsAliveKenji() const { return Health > 0; }
 
 
 	void KenjiDefeat(); // 김소월이 패배하면 출력할 함수
 
 public:
 	Kenji() = default;
-	Kenji(std::string InName) : Poet(InName) {}
+	Kenji(std::string InName, int InHealth, int InAttackPower) : Poet(InName, InHealth, InAttackPower) {}
 	virtual ~Kenji() {};
 };
 

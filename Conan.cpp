@@ -61,11 +61,6 @@ void Conan::ConanPoemSkill()
 
 }
 
-inline bool Conan::IsAliveConan()
-{
-    return false;
-}
-
 void Conan::ConanDefeat()
 {
 }

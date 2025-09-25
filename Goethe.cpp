@@ -57,16 +57,11 @@ void Goethe::GoethePoemSkill()
     //if (PoetHealth <= 변수)
     //
 
-    if (PoetHealth <= 50)
+    if (Health <= 50)
     {
         printf("|| 누가 말을 타고 가는가, 거센 바람 부는 이 늦은 밤에? ||\n");   // 괴테의 마왕의 첫 구절이다.
         //현재 상대 체력에 50% 만큼의 공격을 함
     }
-}
-
-inline bool Goethe::IsAliveGoethe()
-{
-    return false;
 }
 
 void Goethe::GoetheDefeat()

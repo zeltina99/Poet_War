@@ -18,18 +18,16 @@ public:
 
 	void CharlesPoemSkill();	// 샤를 보들레르의 전용 스킬
 
-	/// <summary>
-	/// 이 시인의 생존 여부를 알려주는 함수
-	/// </summary>
-	/// <returns>true면 살아있다. false면 죽었다.</returns>
-	inline bool IsAliveCharles();
-
 	
-	void CharlesDefeat(); // 샤를이 패배하면 출력할 함수
+	inline bool IsAliveCharles() const { return Health > 0; }	//true면 살아있다, false면 죽어있다.
+	
 
 public:
 	Charles() = default;
-	Charles(std::string InName) : Poet(InName) {}
+	Charles(std::string InName, int InHealth, int InAttackPower) : Poet(InName, InHealth, InAttackPower) {}
+
+	//TwilightPoet(std::string InName, int InHealth, int InAttackPower) : Poet(InName, InHealth, InAttackPower) {}
+	
 	virtual ~Charles() {};
 
 

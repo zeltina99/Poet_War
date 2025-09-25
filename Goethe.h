@@ -17,18 +17,14 @@ class Goethe : public Poet, public ICanBattle
 
 	void GoethePoemSkill();	// 샤를 보들레르의 전용 스킬
 
-	/// <summary>
-	/// 이 시인의 생존 여부를 알려주는 함수
-	/// </summary>
-	/// <returns>true면 살아있다. false면 죽었다.</returns>
-	inline bool IsAliveGoethe();
+	inline bool IsAliveGoethe() const { return Health > 0; }
 
 
 	void GoetheDefeat(); // 괴테가 패배하면 출력할 함수
 
 public:
 	Goethe() = default;
-	Goethe(std::string InName) : Poet(InName) {}
+	Goethe(std::string InName, int InHealth, int InAttackPower) : Poet(InName, InHealth, InAttackPower) {}
 	virtual ~Goethe() {};
 };
 

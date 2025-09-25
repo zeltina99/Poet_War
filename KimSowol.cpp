@@ -54,17 +54,13 @@ void KimSowol::KimSowolPoemSkill()
 {
     //현재 체력이 20 미만일 때 발동
 
-    if (PoetHealth <= 20)
+    if (Health <= 20)
     {
         printf("|| 나 보기가 역겨워 가실 때에는 말없이 고이 보내 드리우리다. ||\n");   // 김소월의 진달래 꽃에 나오는 구절이다.
         //김소월의 현재 체력에 +100을 한다.
     }
 }
 
-inline bool KimSowol::IsAliveKimSowol()
-{
-    return false;
-}
 
 void KimSowol::KimSowolDefeat()
 {

@@ -54,17 +54,12 @@ void Dante::DantePoemSkill()
 {
     //최대 체력이 20% 미만일 때 발동
     
-    if (PoetHealth <= 20)
+    if (Health <= 20)
     {
         printf("|| Lasciate ogne speranza, voi ch’intrate ||\n");   // 단테의 신곡 [지옥]편에 나오는 구절
         //한번 플레이어의 공격을 무시한다. -> if 해서 변수 하나 더 만들고 0 데미지 넣으면 됨
     }
 
-}
-
-inline bool Dante::IsAliveDante()
-{
-    return false;
 }
 
 void Dante::DanteDefeat()
