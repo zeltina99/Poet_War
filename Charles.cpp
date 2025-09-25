@@ -48,25 +48,23 @@ void Charles::TakeDamage(int InDamage)
     case 1:
     {
         printf("%s: 고통조차도 시가 된다...\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
         break;
     case 2:
     {
         printf("%s: 악의 꽃은 시들지 않아.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
         break;
     case 3:
     {
         printf("%s: 나약한 시 구절이다!\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
         break;
     default:
         //ERROR!!
         break;
     }
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     printf("\n");
 
 }

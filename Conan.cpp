@@ -40,26 +40,24 @@ void Conan::TakeDamage(int InDamage)
     case 1:
     {
         printf("%s: 하! 증거는 고통 속에 남지.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
         printf("%s: 영국의 안개보다 가볍군.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
         printf("%s: 너의 시는 흉기가 되지 못해.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:
         //ERROR!!
         break;
     }
-    // 아서 코난도일 체력 - 플레이어 공격력
+    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("\n");
 }
 
 void Conan::ConanPoemSkill()

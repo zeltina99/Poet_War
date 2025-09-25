@@ -40,26 +40,24 @@ void KimSowol::TakeDamage(int InDamage)
     case 1:
     {
         printf("%s: 떠나가는 이의 슬픔은 깊구나...\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
         printf("%s: 진달래는 꺾여도 다시 핀다.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
         printf("%s: 내 시는 이 고통조차 품는다.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:
         //ERROR!!
         break;
     }
-    // 김소월 체력 - 플레이어 공격력
+    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("\n");
 }
 
 void KimSowol::KimSowolPoemSkill()

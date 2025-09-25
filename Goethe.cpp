@@ -59,7 +59,8 @@ void Goethe::TakeDamage(int InDamage)
         //ERROR!!
         break;
     }
-    // 괴테 체력 - 플레이어 공격력
+    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("\n");
 }
 
 void Goethe::GoethePoemSkill()

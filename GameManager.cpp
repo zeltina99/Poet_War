@@ -211,9 +211,8 @@ void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
 
         if (InputNumber == 1)
         {
-            // 플레이어 턴 (기본 공격)
+            // 플레이어 턴 (기본공격)
             InPlayer->RecitePoemAttack(InPoet);
-
             if (InPoet->GetPoetHealth() <= 0)
             {
                 break;
@@ -221,7 +220,6 @@ void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
 
             // 적(시인) 턴
             InPoet->Attack(InPlayer);
-
             if (!InPlayer->IsAlivePlayer())
             {
                 break;
@@ -231,42 +229,40 @@ void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
         {
             // 보유한 시집 스킬 확인
             const auto& poems = InPlayer->GetPoems();
-
             if (poems.empty())
             {
                 printf("아직 획득한 시집이 없다!\n");
-                continue;    // 턴 소비 안 하고 다시 선택
+                continue;  // 턴을 소비하지 않고 다시 선택
             }
 
             printf("\n--- 사용 가능한 시집 ---\n");
-
             for (size_t i = 0; i < poems.size(); ++i)
             {
                 switch (poems[i])
                 {
                 case Poem::CharlesPoem:
-                    printf("%d. 악의 꽃 (공격력 2배)\n", (int)i + 1);
+                    printf("%d. 악의 꽃 (공격력 2배)\n", static_cast<int>(i) + 1);
                     break;
                 case Poem::DantePoem:
-                    printf("%d. 신곡 (다음 공격 무시)\n", (int)i + 1);
+                    printf("%d. 신곡 (추가 피해)\n", static_cast<int>(i) + 1);
                     break;
                 case Poem::GoethePoem:
-                    printf("%d. 마왕 (추가 피해)\n", (int)i + 1);
+                    printf("%d. 마왕 (추가 피해)\n", static_cast<int>(i) + 1);
                     break;
                 case Poem::KimSowolPoem:
-                    printf("%d. 진달래꽃 (체력 회복)\n", (int)i + 1);
+                    printf("%d. 진달래꽃 (체력 회복)\n", static_cast<int>(i) + 1);
                     break;
                 case Poem::ConanPoem:
-                    printf("%d. 활의 노래 (정확도 상승)\n", (int)i + 1);
+                    printf("%d. 활의 노래 (추가 피해)\n", static_cast<int>(i) + 1);
                     break;
                 case Poem::KenjiPoem:
-                    printf("%d. 비에도 지지 않고 (방어력 상승)\n", (int)i + 1);
+                    printf("%d. 비에도 지지 않고 (체력 회복)\n", static_cast<int>(i) + 1);
                     break;
                 }
             }
-
             printf("0. 취소\n");
-            int poemChoice = 0;
+
+            int poemChoice;
             printf("> 선택: ");
             std::cin >> poemChoice;
 
@@ -274,8 +270,7 @@ void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
             {
                 continue;
             }
-
-            if (poemChoice < 1 || poemChoice >(int)poems.size())
+            if (poemChoice < 1 || poemChoice >static_cast<int>(poems.size()))
             {
                 printf("잘못된 입력이다.\n");
                 continue;
@@ -293,7 +288,6 @@ void GameManager::BattleMenu(Player* InPlayer, Poet* InPoet)
 
             // 적 턴
             InPoet->Attack(InPlayer);
-
             if (!InPlayer->IsAlivePlayer())
             {
                 break;

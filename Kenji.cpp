@@ -40,26 +40,24 @@ void Kenji::TakeDamage(int InDamage)
     case 1:
     {
         printf("%s: 너의 시에는 지지 않는다...\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
         printf("%s: 흙과 들풀이 날 지탱한다.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
         printf("%s: 가뭄이 들면 눈물을 흘리는 법.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:
         //ERROR!!
         break;
     }
-    // 미야자와 켄지 체력 - 플레이어 공격력
+    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("\n");
 }
 
 void Kenji::KenjiPoemSkill()
