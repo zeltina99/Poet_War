@@ -137,7 +137,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Poet.cpp" />
     <ClCompile Include="PoetWar.cpp" />
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TwilightPoet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +154,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Poet.h" />
     <ClInclude Include="PoetWar.h" />
-    <ClInclude Include="Test.h" />
     <ClInclude Include="TwilightPoet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

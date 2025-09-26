@@ -69,9 +69,6 @@
     <ClCompile Include="ICanBattle.cpp">
       <Filter>게임 구조</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>게임 구조</Filter>
-    </ClCompile>
     <ClCompile Include="Chapters.cpp">
       <Filter>게임 구조</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
       <Filter>플레이어</Filter>
     </ClInclude>
     <ClInclude Include="ICanBattle.h">
-      <Filter>게임 구조</Filter>
-    </ClInclude>
-    <ClInclude Include="Test.h">
       <Filter>게임 구조</Filter>
     </ClInclude>
     <ClInclude Include="Chapters.h">
