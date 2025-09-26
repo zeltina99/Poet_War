@@ -52,7 +52,7 @@ void GameManager::TypeWriterPrint(const std::string& text, int delay_ms)
         fflush(stdout);         // 출력 버퍼를 비워 즉시 화면에 보이게 함
         std::this_thread::sleep_for(
             std::chrono::milliseconds(delay_ms));
-        // delay_ms 밀리초 동안 대기 (타자기 속도 조절) 
+        // delay_ms 밀리초 동안 대기 (타자기 속도 조절)
     }
 }
 
