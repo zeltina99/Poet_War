@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Test.cpp
+/Test.h
+/POETWAR/Test.cpp
+/Test.cpp
+/Test.h
