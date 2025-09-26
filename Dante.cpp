@@ -1,5 +1,6 @@
 #include "Dante.h"
 
+
 void Dante::Attack(ICanBattle* InTarget)
 {
     int AttackEventNumber = rand() % 10;
@@ -28,10 +29,11 @@ void Dante::Attack(ICanBattle* InTarget)
 
 void Dante::TakeDamage(int InDamage)
 {
+    DantePoemSkill();
     if (IgnoreNextDamage)
     {
         printf("%s는 지옥의 힘으로 이번 피해를 무시했다!\n", Name.c_str());
-        IgnoreNextDamage = false;  // 한 번만 무시하므로 다시 false
+        IgnoreNextDamage = false;   // 한번만 출력하면 됨
         return;
     }
 
@@ -63,18 +65,20 @@ void Dante::TakeDamage(int InDamage)
         //ERROR!!
         break;
     }
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     printf("\n");
     // 단테 체력 - 플레이어 공격력
 }
 
 void Dante::DantePoemSkill()
 {
-    if (Health <= 26)   //최대 체력이 20% 이하일 때 발동
+    if ((Health <= 26)&& !SkiilUsed)   //최대 체력이 20% 이하일 때 발동
     {
         printf("|| Lasciate ogne speranza, voi ch’intrate ||\n");   // 단테의 신곡 [지옥]편에 나오는 구절
         printf("%s는 잠시 지옥의 문에 서서, 다음 피해를 무시한다!\n\n", Name.c_str());
-
-        IgnoreNextDamage = true; // 다음 데미지를 무시하게 플래그 설정
+        SkiilUsed = true; // 스킬을 썼으니까 true로 바꿈
+        IgnoreNextDamage = true;
+        return;
     }
 
 }

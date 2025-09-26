@@ -15,7 +15,6 @@ public:
 	/// <param name="InDamage">적용할 피해량</param>
 	virtual void TakeDamage(int InDamage) override;
 
-	void ConanPoemSkill();	// 코난의 전용 스킬
 
 	inline bool IsAliveConan() const { return Health > 0; }
 
@@ -24,5 +23,6 @@ public:
 	Conan() = default;
 	Conan(std::string InName, int InHealth, int InAttackPower) : Poet(InName, InHealth, InAttackPower) {}
 	virtual ~Conan() {};
+	//void ConanPoemSkill();	// 코난의 전용 스킬
 };
 

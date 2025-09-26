@@ -56,22 +56,25 @@ void KimSowol::TakeDamage(int InDamage)
         //ERROR!!
         break;
     }
-    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    KimSowolPoemSkill();
     printf("\n");
 }
 
 void KimSowol::KimSowolPoemSkill()
 {
-    //현재 체력이 20 미만일 때 발동
+    //현재 체력이 60 이하일 때 발동
+    
+    int Current = Health;
 
-    if (Health <= 20)
+    if ((0 < Health) && (Health <= 40)) // 체력이 0보다 크고 40 이하 일때 발동
     {
         printf("|| 나 보기가 역겨워 가실 때에는 말없이 고이 보내 드리우리다. ||\n");   // 김소월의 진달래 꽃에 나오는 구절이다.
         //김소월의 현재 체력에 +100을 한다.
+        Health += 100;
+
+        printf("%s의 현재 체력 : [%d] -> [%d]\n\n", Name.c_str(), Current, Health);
+
     }
 }
 
-
-void KimSowol::KimSowolDefeat()
-{
-}

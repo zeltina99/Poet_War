@@ -21,7 +21,10 @@ public:
 	virtual void TakeDamage(int InDamage)
 	{
 		SetHealth(Health - InDamage);
-		if (Health < 0) Health = 0;
+		if (Health < 0)
+		{
+			Health = 0;
+		}
 
 		printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
 	}

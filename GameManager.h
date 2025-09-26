@@ -1,6 +1,8 @@
 #pragma once
 #include "Player.h"
 #include "Chapters.h"
+#include "TwilightPoet.h"
+
 
 
 class GameManager
@@ -12,8 +14,9 @@ public:
 
 	void Intro();
 	void TutorialBattle(Player* player, TwilightPoet* twilight);	// 튜토리얼 전투
-
-
+	void LastBossEvent(Player* player);	// 최종 보스전 메뉴
+	void FinalBossBattle(Player* InPlayer);
+	
 public:
 	GameManager() = default;
 	~GameManager();
@@ -21,6 +24,8 @@ public:
 private:
 	Player player;
 	Chapters Level;
+	bool EndTrigger = true;
+	void TypeWriterPrint(const std::string& text, int delay_ms = 50);	// 마지막 엔딩 크레딧
 };
 
 

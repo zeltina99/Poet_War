@@ -16,7 +16,7 @@ Battles poet;
 
 void Chapters::CharlesChapter(Player* player)
 {
-    Charles CharlesPoet("샤를 보들레르", 100, 8);
+    Charles CharlesPoet("샤를 보들레르", 100, 8);     // 샤를의 체력과 공격력 설정
     poet.CharlesBattle(player, &CharlesPoet);
     if (!CharlesPoet.IsAliveCharles())
     {
@@ -27,9 +27,7 @@ void Chapters::CharlesChapter(Player* player)
 
 void Chapters::DanteChapter(Player* player)
 {
-    map.InferniaMap();
-    Dante DantePoet("단테", 130, 10);
-    printf("윤동주: 저 문을 넘보려는 자들은 하나같이 사라졌다는 얘기가 있어...\n\n");
+    Dante DantePoet("단테", 130, 10);                 // 단테의 체력과 공격력 설정
 
     poet.DanteBattle(player, &DantePoet);
     if (!DantePoet.IsAliveDante())
@@ -40,10 +38,9 @@ void Chapters::DanteChapter(Player* player)
 
 void Chapters::ConanChapter(Player* player)
 {
-    map.ShercroftMap();
-    Conan ConanPoet("아서 코난도일", 150, 8);
-    printf("윤동주: 그림자 하나까지도 단서가 되는 마을이야.\n\n");
+    Conan ConanPoet("아서 코난도일", 150, 8);           // 아서 코난도일의 체력과 공격력 설정
 
+    poet.ConanBattle(player, &ConanPoet);
     if (!ConanPoet.IsAliveConan())
     {
         DefeatedPoets.push_back(PoetID::ConanID);
@@ -52,10 +49,9 @@ void Chapters::ConanChapter(Player* player)
 
 void Chapters::GoetheChapter(Player* player)
 {
-    map.FaustburgMap();
-    Goethe GoethePoet("괴테", 80, 20);
-    printf("윤동주: 파우스트의 성채... 욕망에 팔아넘기지 않은 영혼이라면 조심하는 게 좋아.\n\n");
-
+    Goethe GoethePoet("괴테", 100, 20);               // 괴테의 체력과 공격력 설정
+    
+    poet.GoetheBattle(player, &GoethePoet);
     if(!GoethePoet.IsAliveGoethe())
     {
         DefeatedPoets.push_back(PoetID::GoetheID);
@@ -64,10 +60,9 @@ void Chapters::GoetheChapter(Player* player)
 
 void Chapters::KenjiChapter(Player* player)
 {
-    map.KazehamuraMap();
-    Kenji KenjiPoet("미야자와 켄지", 200, 25);
-    printf("윤동주: 백개의 바람이 분다는 마을이야.\n\n");
-
+    Kenji KenjiPoet("미야자와 켄지", 200, 25);            // 미야자와 켄지의 체력과 공격력 설정
+    
+    poet.KenjiBattle(player, &KenjiPoet);
     if (!KenjiPoet.IsAliveKenji())
     {
         DefeatedPoets.push_back(PoetID::KenjiID);
@@ -76,25 +71,12 @@ void Chapters::KenjiChapter(Player* player)
 
 void Chapters::KimSowolChapter(Player* player)
 {
-    map.AzaleanMap();
-    KimSowol KimSowolPoet("김소월", 250, 20);
-    printf("윤동주: 바람에 흔들리는 꽃잎을 보게... 쓸쓸하지 않아?\n\n");
-
+    KimSowol KimSowolPoet("김소월", 250, 20);          // 김소월의 체력과 공격력 설정
+    
+    poet.KimSowolBattle(player, &KimSowolPoet);
     if(!KimSowolPoet.IsAliveKimSowol())
     {
         DefeatedPoets.push_back(PoetID::KimSowolID);
-    }
-}
-
-void Chapters::BoseChapter(Player* player)
-{
-    map.AvonSanctumMap();
-    TwilightPoet Shakespeare("윌리엄 셰익스피어", 500, 50);
-    printf("윤동주: .....지금까지 모은 시집을 줘\n\n");
-
-    if(!Shakespeare.IsAlive())
-    {
-        DefeatedPoets.push_back(PoetID::ShakespeareID);
     }
 }
 
@@ -108,7 +90,11 @@ void Chapters::LevelChapters(Player* player)
         std::vector<std::pair<int, PoetID>> menu;
         int Index = 1;
 
+        // DefeatedPoets 벡터에 DanteID가 없으면 (아직 단테를 안 이겼으면) true
         bool DanteAlive = std::find(DefeatedPoets.begin(), DefeatedPoets.end(), PoetID::DanteID) == DefeatedPoets.end();
+        // 즉, 단테가 아직 살아있다는 의미
+
+        // 밑에도 똑같음
         bool ConanAlive = std::find(DefeatedPoets.begin(), DefeatedPoets.end(), PoetID::ConanID) == DefeatedPoets.end();
         bool GoetheAlive = std::find(DefeatedPoets.begin(), DefeatedPoets.end(), PoetID::GoetheID) == DefeatedPoets.end();
 
@@ -118,6 +104,9 @@ void Chapters::LevelChapters(Player* player)
             if (DanteAlive)
             {
                 printf("%d. 지옥의 문 앞 마을\n", Index);
+
+                // 메뉴 벡터에 (메뉴 번호, 단테의 ID) 쌍을 추가
+                // Index++ 로 인해 다음 메뉴 항목을 위한 번호가 자동으로 증가함
                 menu.push_back({ Index++, PoetID::DanteID });
             }
             if (ConanAlive)
@@ -141,28 +130,37 @@ void Chapters::LevelChapters(Player* player)
                 return;
             }
 
-            auto iter = std::find_if(menu.begin(), menu.end(),
-                [ChoiceNumber](auto& m) { return m.first == ChoiceNumber; });   // 람다에 변수명을 넣어서 캡쳐함
 
-            if (iter != menu.end())
+            // menu 컨테이너 안에서 플레이어가 입력한 ChoiceNumber와 일치하는 항목을 찾는다.
+            // menu는 아마 (번호, PoetID) 형태의 pair들을 담고 있는 벡터일 것.
+            // std::find_if는 조건을 만족하는 첫 번째 원소를 반환한다.
+            auto iter = std::find_if
+            (menu.begin(),  // 탐색 시작 위치
+             menu.end(),    // 탐색 끝 위치
+             [ChoiceNumber](auto& m)    // 람다식: menu의 각 원소 m에 대해 검사
+             { return m.first == ChoiceNumber; }    // m.first(메뉴 번호)가 ChoiceNumber와 같은지 확인
+            );
+
+            
+            if (iter != menu.end())     // iter가 menu.end()가 아니라면 → 즉, 플레이어가 고른 번호에 해당하는 메뉴 항목이 실제로 존재한다면
             {
-                switch (iter->second)
+                switch (iter->second)    // iter->second = 해당 메뉴 항목에 연결된 PoetID
                 {
-                case PoetID::DanteID:
+                case PoetID::DanteID:   // 플레이어가 단테가 있는 마을을 선택했을 경우
                 {
-                    DanteChapter(player);
-                    CurrentLocation = LocationID::Infernia;
+                    map.InferniaMap();   // "지옥의 문 앞 마을" 맵을 불러옴
+                    CurrentLocation = LocationID::Infernia; // 현재 위치를 Infernia로 설정
                 }
                 break;
                 case PoetID::ConanID:
                 {
-                    ConanChapter(player);
+                    map.ShercroftMap();
                     CurrentLocation = LocationID::Shercroft;
                 }
                     break;
                 case PoetID::GoetheID:
                 {
-                    GoetheChapter(player);
+                    map.FaustburgMap();
                     CurrentLocation = LocationID::Faustburg;
                 }
                     break;
@@ -181,6 +179,11 @@ void Chapters::LevelChapters(Player* player)
         bool KenjiAlive = std::find(DefeatedPoets.begin(), DefeatedPoets.end(), PoetID::KenjiID) == DefeatedPoets.end();
         bool SowolAlive = std::find(DefeatedPoets.begin(), DefeatedPoets.end(), PoetID::KimSowolID) == DefeatedPoets.end();
 
+        if(YoonMasage)
+        {
+            printf("윤동주: 드디어 꽃잎으로 막혔던 동방의 나라가 열렸어.\n\n");
+            YoonMasage = false;
+        }
         if (KenjiAlive || SowolAlive)
         {
             printf("\n=== 이동 가능한 맵 ===\n");
@@ -214,13 +217,13 @@ void Chapters::LevelChapters(Player* player)
                 {
                 case PoetID::KenjiID:
                 {
-                    KenjiChapter(player);
+                    map.KazehamuraMap();
                     CurrentLocation = LocationID::Kazehamura;
                 }
                     break;
                 case PoetID::KimSowolID:
                 {
-                    KimSowolChapter(player);
+                    map.AzaleanMap();
                     CurrentLocation = LocationID::Azalean;
                 }
                     break;
@@ -236,8 +239,30 @@ void Chapters::LevelChapters(Player* player)
         // 최종 보스
         if (!KenjiAlive && !SowolAlive)
         {
-            BoseChapter(player);
-            CurrentLocation = LocationID::AvonSanctum;
+            while (true)
+            {
+                printf("\n=== 이동 가능한 맵 ===\n");
+                printf("1. ???????????\n");
+                printf("0. 뒤로가기\n");
+
+                printf("> 선택: ");
+                std::cin >> ChoiceNumber;
+
+                if (ChoiceNumber == 0)
+                {
+                    return;
+                }
+                else if (ChoiceNumber == 1)
+                {
+                    map.AvonSanctumMap();
+                    CurrentLocation = LocationID::AvonSanctum;
+                    break;
+                }
+                else
+                {
+                    printf("잘못된 입력입니다.\n");
+                }
+            }
         }
     }
     else
@@ -260,7 +285,11 @@ void Chapters::LevelChapters(Player* player)
     }
 }
 
+// 특정 시인(PoetID id)이 아직 살아있는지 여부를 확인하는 함수
 bool Chapters::IsPoetAlive(PoetID id) const
 {
+    // DefeatedPoets 벡터에서 id를 찾아본다.
+    // - begin() ~ end() 범위에서 id와 같은 원소를 찾으면 해당 시인은 이미 쓰러진 것.
+    // - 못 찾았다면(end() 반환) 아직 쓰러뜨리지 못한 것이므로 살아있다.
     return std::find(DefeatedPoets.begin(), DefeatedPoets.end(), id) == DefeatedPoets.end();
 }

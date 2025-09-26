@@ -10,6 +10,8 @@ void Battles::CharlesBattle(Player* InPlayer, Charles* InPoet)
 
     while (InPlayer->IsAlivePlayer() && InPoet->IsAliveCharles())
     {
+        printf("\n--- 전투 메뉴 ---\n");
+        printf("[공격력 : %d]\t[체력 : %d/%d]\n", InPlayer->GetPlayerAttackPower(), InPlayer->GetPlayerHealth(), InPlayer->GetPlayerMaxHealth());
         printf("① 시를 읽는다\n");
         printf("> 선택: ");
         std::cin >> InputNumber;
@@ -50,6 +52,20 @@ void Battles::ConanBattle(Player* InPlayer, Conan* InPoet)
 
     if (InPoet->GetPoetHealth() <= 0)
     {
+        InPlayer->TakeInk(250);   // 코난 전투 보상
+        InPlayer->AddPoem(Poem::ConanPoem);
+        printf("아서 코난도일을 쓰러트리고 시집 [활의 노래]를 얻었다!\n\n");
+        printf("윤동주: 이제 다음 마을로 가자.\n");
+    }
+}
+
+void Battles::DanteBattle(Player* InPlayer, Dante* InPoet)
+{
+    GameManager gm;
+    gm.BattleMenu(InPlayer, InPoet);
+
+    if (InPoet->GetPoetHealth() <= 0)
+    {
         InPlayer->TakeInk(300);   // 단테 전투 보상
         InPlayer->AddPoem(Poem::DantePoem);
         printf("단테를 쓰러트리고 시집 [신곡]을 얻었다!\n\n");
@@ -57,18 +73,44 @@ void Battles::ConanBattle(Player* InPlayer, Conan* InPoet)
     }
 }
 
-void Battles::DanteBattle(Player* InPlayer, Dante* InPoet)
-{
-}
-
 void Battles::GoetheBattle(Player* InPlayer, Goethe* InPoet)
 {
+    GameManager gm;
+    gm.BattleMenu(InPlayer, InPoet);
+
+    if (InPoet->GetPoetHealth() <= 0)
+    {
+        InPlayer->TakeInk(250);   // 괴테 전투 보상
+        InPlayer->AddPoem(Poem::GoethePoem);
+        printf("괴테를 쓰러트리고 시집 [마왕]을 얻었다!\n\n");
+        printf("윤동주: 이제 다음 마을로 가자.\n");
+    }
 }
 
 void Battles::KenjiBattle(Player* InPlayer, Kenji* InPoet)
 {
+    GameManager gm;
+    gm.BattleMenu(InPlayer, InPoet);
+
+    if (InPoet->GetPoetHealth() <= 0)
+    {
+        InPlayer->TakeInk(250);   // 켄지 전투 보상
+        InPlayer->AddPoem(Poem::KenjiPoem);
+        printf("미야자와 켄지를 쓰러트리고 시집 [비에도 지지 않고]를 얻었다!\n\n");
+        printf("윤동주: 이제 다음 마을로 가자.\n");
+    }
 }
 
 void Battles::KimSowolBattle(Player* InPlayer, KimSowol* InPoet)
 {
+    GameManager gm;
+    gm.BattleMenu(InPlayer, InPoet);
+
+    if (InPoet->GetPoetHealth() <= 0)
+    {
+        InPlayer->TakeInk(250);   // 김소월 전투 보상
+        InPlayer->AddPoem(Poem::KimSowolPoem);
+        printf("김소월을 쓰러트리고 시집 [진달래꽃]을 얻었다!\n\n");
+        printf("윤동주: 이제 다음 마을로 가자.\n");
+    }
 }

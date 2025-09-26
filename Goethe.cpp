@@ -6,6 +6,11 @@ void Goethe::Attack(ICanBattle* InTarget)
     //PoemAttackPower
     int PoemAttackPower = AttackPower;
 
+    if (GoethePoemSkill(dynamic_cast<Player*>(InTarget)))
+    {
+        return;
+    }
+
     if (AttackEventNumber < 7)    // 기본 공격 (맞을 확률 70%)
     {
         printf("%s: 마왕의 노래를 들어라!\n", Name.c_str());
@@ -40,40 +45,42 @@ void Goethe::TakeDamage(int InDamage)
     case 1:
     {
         printf("%s: ...이 고통마저 노래하리라.\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 2:
     {
         printf("%s: 아직 나의 노래는 시작하지 않았다!\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     case 3:
     {
         printf("%s: 이제 백일야에서 끝을 보자...\n", Name.c_str());
-        printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     }
     break;
     default:
         //ERROR!!
         break;
     }
-    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     printf("\n");
 }
 
-void Goethe::GoethePoemSkill()
+bool Goethe::GoethePoemSkill(Player* InPlayer)
 {
     //최대 체력이 50% 미만일 때 발동
     //int 변수 = 괴테의 최대 체력 / 2
-    //if (PoetHealth <= 변수)
+    //if (tHealth <= 변수)
     //
 
     if (Health <= 50)
     {
         printf("|| 누가 말을 타고 가는가, 거센 바람 부는 이 늦은 밤에? ||\n");   // 괴테의 마왕의 첫 구절이다.
         //현재 상대 체력에 50% 만큼의 공격을 함
+
+        AttackPower = (InPlayer->GetPlayerHealth()) / 2;
+        InPlayer->TakeDamage(AttackPower);
+        return true;
     }
+    return false;
 }
 

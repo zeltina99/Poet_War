@@ -37,12 +37,12 @@ public:
 	void GoetheChapter(Player* player);	// 괴테 전
 	void KenjiChapter(Player* player);	// 켄지 전
 	void KimSowolChapter(Player* player);	// 김소월 전
-	void BoseChapter(Player* player);		// 보스 전
 	void LevelChapters(Player* player);	// 레벨 별로 분리 해서 이동할 수 있는 맵을 좁히는 함수
 
 	bool IsPoetAlive(PoetID id) const;	// 시인이 죽었는지 여부 확인
 
 	inline LocationID GetCurrentLocation() { return CurrentLocation; }
+	bool YoonMasage = true;
 
 private:
 	std::vector<PoetID> DefeatedPoets;	//이긴 시인의 기록

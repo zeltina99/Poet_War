@@ -5,6 +5,16 @@ void Conan::Attack(ICanBattle* InTarget)
     int AttackEventNumber = rand() % 10;
     //PoemAttackPower
     int PoemAttackPower = AttackPower;
+    int SkillEventNumber = rand() % 5;
+
+    bool DoubleAttak = false;
+
+    if (SkillEventNumber == 4)  // 전투 할 때 마다 20% 확률로 공격을 두번 한다.
+    {
+        printf("|| It is there that our mark will be. ||\n");   // 아서 코난도일의 활의 노래의 시 구절
+        DoubleAttak = true;
+    }
+
 
     if (AttackEventNumber < 7)    // 기본 공격 (맞을 확률 70%)
     {
@@ -24,6 +34,11 @@ void Conan::Attack(ICanBattle* InTarget)
         printf("%s: 명탐정이라도 예측 못 한 순간인가...\n", Name.c_str());
         //PoemAttackPower가 안 들어감
     }
+    if (DoubleAttak)
+    {
+        InTarget->TakeDamage(AttackPower);
+    }
+
 }
 
 void Conan::TakeDamage(int InDamage)
@@ -56,18 +71,8 @@ void Conan::TakeDamage(int InDamage)
         //ERROR!!
         break;
     }
-    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     printf("\n");
 }
 
-void Conan::ConanPoemSkill()
-{
-    int SkillEventNumber = rand() % 5;
-
-    if (SkillEventNumber == 4)  // 전투 할 때 마다 20% 확률로 공격을 두번 한다.
-    {
-        printf("|| It is there that our mark will be. ||\n");   // 아서 코난도일의 활의 노래의 시 구절
-    }
-
-}
 

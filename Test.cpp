@@ -7,6 +7,5 @@ void Test::TestGame()
 	/*Map map;
 	map.TutorialMap();*/
 
-	GameManager Game;
-	Game.StartGame();
+	
 }

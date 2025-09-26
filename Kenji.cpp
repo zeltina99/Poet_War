@@ -29,8 +29,13 @@ void Kenji::Attack(ICanBattle* InTarget)
 void Kenji::TakeDamage(int InDamage)
 {
     int TakeEventNumber = (rand() % 3) + 1;
+    if (Passive)
+    {
+        KenjiPoemSkill();
+        Passive = false;
+    }
     //PlayerAttackPower
-    Health -= InDamage;
+    Health = (Health + 10) - InDamage;
     if (Health < 0)
     {
         Health = 0;
@@ -56,19 +61,14 @@ void Kenji::TakeDamage(int InDamage)
         //ERROR!!
         break;
     }
-    // printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
+    printf("%s는 %d의 피해를 입었다! ([%s]의 현재 체력: %d)\n", Name.c_str(), InDamage, Name.c_str(), Health);
     printf("\n");
 }
 
 void Kenji::KenjiPoemSkill()
 {
-    // 상시 패시브로 플레이어의 공격을 -5 만큼 깎아서 데미지 받음
-    // PoetHealth = PoetHealth - (PlayerAttackPower - 5)
-    printf("|| 비에도 지지 않고 바람에도 지지 않으며, 눈에도 여름의 더위에도 지지 않고. ||\n");   // 미야자와 켄지의 비에도 지지 않고의 시 구절이다.
-
+    // 상시 패시브로 플레이어의 공격을 -10 만큼 깎아서 데미지 받음
+    printf("\n|| 비에도 지지 않고 바람에도 지지 않으며, 눈에도 여름의 더위에도 지지 않고. ||\n");   // 미야자와 켄지의 비에도 지지 않고의 시 구절이다.
+    printf("\n%s: 너의 공격은 나에게 10씩 깎여서 들어올거다.\n", Name.c_str());
 }
 
-
-void Kenji::KenjiDefeat()
-{
-}

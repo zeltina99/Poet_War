@@ -53,20 +53,36 @@ public:
 	inline std::wstring GetName() const { return Name; }
 	inline int GetPlayerAttackPower() const { return PlayerAttackPower; }
 
+
+	inline std::wstring GetPoem() const
+	{
+		if (!Poems.empty())
+		{
+			return Poems.back();  // 마지막에 입력된 시 반환
+		}
+		return L"";
+	}
+
+
 	void AddPoem(Poem poem);	// 적을 이기면 얻을 아이템
 
 	void ShowInventory() const;// 보여줄 인벤토리
 
-	const std::vector<Poem>& GetPoems() const { return Inventory; }
+	// 최종 보스 특수기 전용 함수
+	void ForceSetHealth(int value) { PlayerHealth = value; }
+	void ForceSetMaxHealth(int value) { MaxHealth = value; }
+	void ForceSetAttackPower(int value) { PlayerAttackPower = value; }
+
+	const std::vector<Poem>& GetPoems() const { return Inventory; }	// 플레이어가 지금까지 모은 시집을 보여주는 함수
 
 	
 
 public:
 
 	Player() = default;
-	Player(std::wstring InName) : Name(InName) {}
+	/*Player(std::wstring InName) : Name(InName) {}*/
 
-	void Init(std::wstring InName)
+	void Init(std::wstring InName)	// 플레이어의 초기 값 설정
 	{
 		Name = InName;
 		Poems.clear();
@@ -158,7 +174,7 @@ private:
 		case Poem::ConanPoem:
 			return "[활의 노래] (코난 도일)";
 		case Poem::KenjiPoem:
-			return "[비에도 지지 않고] (미야자와 겐지)";
+			return "[비에도 지지 않고] (미야자와 켄지)";
 		default:
 			return "알 수 없는 시집";
 		}
@@ -168,7 +184,7 @@ private:
 
 	int PlayerAttackPower = 0;		// 기본 공격력
 	std::wstring Name;
-	std::vector<std::wstring> Poems;;  // 플레이어가 입력한 시 구절
+	std::vector<std::wstring> Poems;  // 플레이어가 입력한 시 구절
 	int PlayerHealth = 100;	// 기본 체력
 	int MaxHealth = 100;	// 최대 체력 (강화시 늘어남)
 	static const int LimitHealth = 500;	// 한계 체력 (강화해도 500 초과가 안됨)

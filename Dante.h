@@ -15,7 +15,6 @@ public:
 	/// <param name="InDamage">적용할 피해량</param>
 	virtual void TakeDamage(int InDamage) override;
 
-	void DantePoemSkill();	// 단테의 전용 스킬
 
 	inline bool IsAliveDante() const { return Health > 0; }
 
@@ -27,8 +26,9 @@ public:
 	virtual ~Dante() {};
 
 private:
-	bool IgnoreNextDamage = false;	// 단테의 스킬 다음 공격을 무시할지 여부
-
+	bool IgnoreNextDamage = false;	// 단테의 스킬을 한번만 썼다고 출력할 bool
+	bool SkiilUsed = false;			// 스킬을 실제로 썼는지 판단하는 bool
+	void DantePoemSkill();	// 단테의 전용 스킬
 
 };
 
