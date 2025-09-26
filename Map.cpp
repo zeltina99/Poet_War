@@ -74,7 +74,7 @@ void Map::FaustburgMap()
 		std::istreambuf_iterator<char>());	//InputFile에 있는 글자들을 모두 읽어서 FileContents에 저장하기
 	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const 
 	printf("\t\t   [파우스트의 성채]\n");
-	printf("\n윤동주: 파우스트의 성채... 욕망에 팔아넘기지 않은 영혼이라면 조심하는 게 좋아.\n\n");
+	printf("\n윤동주: 파우스트의 성채... 욕망을 팔아넘기지 않은 영혼이라면 조심하는 게 좋아.\n\n");
 
 }
 
